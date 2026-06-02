@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karunya | CSE Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            background: #f5f6fa;
+        }
+
+        nav {
+            background: #2d3436;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            padding: 1rem 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00cec9;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: #fdcb6e;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 0 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary {
+            background: #fdcb6e;
+            color: #2d3436;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2d3436;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #2d3436;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            font-weight: bold;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .project-tags {
+            margin: 1rem 0;
+        }
+
+        .project-tags span {
+            background: #dfe6e9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .gate {
+            background: #2d3436;
+            color: white;
+        }
+
+        .gate h2 {
+            color: white;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .subject-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status {
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .completed { background: #00b894; }
+        .in-progress { background: #fdcb6e; color: #2d3436; }
+        .pending { background: #636e72; }
+
+        .gate-goal {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #2d3436;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid #2d3436;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #2d3436;
+            color: white;
+        }
+
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer a {
+            color: #fdcb6e;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Karunya</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gate">GATE Prep</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Hi, I'm <span class="highlight">Karunya</span></h1>
+            <p class="tagline">BE CSE | Python • SQL • AI/ML • Web Dev | Learning DSA | Building Projects</p>
+            <div>
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/MKARUNYA27" class="btn btn-secondary" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">C Programming</div>
+                <div class="skill-card">Data Structures</div>
+                <div class="skill-card">Algorithms</div>
+                <div class="skill-card">HTML5 & CSS3</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Git & GitHub</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">SQL</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Personal Portfolio</h3>
+                    <p>My personal portfolio website built with HTML and CSS. Shows my skills, projects, and GATE preparation journey.</p>
+                    <div class="project-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>Responsive</span>
+                    </div>
+                    <a href="https://MKARUNYA27.github.io" class="project-link">View Project →</a>
+                </div>
+                <div class="project-card">
+                    <h3>More Projects Coming Soon</h3>
+                    <p>I'm currently building more projects. Check back later!</p>
+                    <div class="project-tags">
+                        <span>In Progress</span>
+                    </div>
+                    <a href="#" class="project-link">Coming Soon →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gate" class="gate">
+        <div class="container">
+            <h2>📚 GATE 2027 Preparation</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Target: IIT M.Tech CSE | GATE CS Paper</p>
+            
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <span>📐 Discrete Mathematics</span>
+                    <span class="status in-progress">In Progress</span>
+                </div>
+                <div class="subject-card">
+                    <span>📊 Data Structures</span>
+                    <span class="status in-progress">In Progress</span>
+                </div>
+                <div class="subject-card">
+                    <span>⚙️ Algorithms</span>
+                    <span class="status pending">Pending</span>
+                </div>
+                <div class="subject-card">
+                    <span>💾 Operating Systems</span>
+                    <span class="status pending">Pending</span>
+                </div>
+                <div class="subject-card">
+                    <span>🗄️ DBMS</span>
+                    <span class="status pending">Pending</span>
+                </div>
+                <div class="subject-card">
+                    <span>🌐 Computer Networks</span>
+                    <span class="status pending">Pending</span>
+                </div>
+            </div>
+
+            <div class="gate-goal">
+                <p>🎯 Daily Goal: Solve 2 DSA problems + Study 1 GATE topic</p>
+                <p>📅 Target Exam: February 2027</p>
+                <p>💪 Consistency > Intensity</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Connect With Me</h2>
+            <div class="social-links">
+                <a href="https://github.com/MKARUNYA27" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/MKarunya27" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Karunya | © 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
